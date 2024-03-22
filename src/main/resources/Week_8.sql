@@ -13,13 +13,13 @@ CREATE TABLE IF NOT EXISTS makeup (
 
 
 CREATE TABLE IF NOT EXISTS manufacturing (
-                                 makeup_id int NOT NULL,
+                                 id int NOT NULL AUTO_INCREMENT,
+                                 makeup_id INT NOT NULL,
                                  ingredients varchar(50) NOT NULL,
                                  productcost int NOT NULL,
                                  manufacturingcost int NOT NULL,
-                                 id int NOT NULL AUTO_INCREMENT,
                                  PRIMARY KEY (id),
-                                 KEY makeup_id (makeup_id),
+                                 FOREIGN KEY (makeup_id) REFERENCES (makeup_id),
 
 );
 

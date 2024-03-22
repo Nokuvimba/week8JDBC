@@ -12,10 +12,12 @@ public class InsertTransactionExample {
                 // Set auto-commit to false to start a transaction
                 conn.setAutoCommit(false);
 
-                // Insert a new record into the "users" table
-                PreparedStatement stmt = conn.prepareStatement("INSERT INTO users (username, password) VALUES (?, ?)");
-                stmt.setString(1, "Paul");
-                stmt.setString(2, "qwerty");
+                // Insert a new record into the "makeup" table
+                PreparedStatement stmt = conn.prepareStatement("INSERT INTO makeup (brand, product,item_no,year_to_expire) VALUES (?,?,?,?)");
+                stmt.setString(1, "Dior");
+                stmt.setString(2, "foundation");
+                stmt.setInt(3,1);
+                stmt.setInt(4,2002);
                 stmt.executeUpdate();
 
                 // Retrieve the generated key for the new record
@@ -28,10 +30,12 @@ public class InsertTransactionExample {
 
                  */
 
-                // Insert a new record into the "emails" table, referencing the new user
-                stmt = conn.prepareStatement("INSERT INTO emails (user_id, email) VALUES (?, ?)");
+                // Insert a new record into the "manufacturing" table, referencing the new user
+                stmt = conn.prepareStatement("INSERT INTO manufacturing (makeup_id, ingredients,productcost,manufacturingcost) VALUES (?, ?,?,?)");
                 stmt.setInt(1, getLastInsertId(conn));
-                stmt.setString(2, "paul@atu.com");
+                stmt.setString(2, "gycerine");
+                stmt.setInt(3,50);
+                stmt.setInt(4,35);
                 stmt.executeUpdate();
 
                 // Commit the transaction

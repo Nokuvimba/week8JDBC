@@ -7,20 +7,24 @@ public class InsertExample {
     public static void main(String[] args) throws SQLException {
 
         // Connect to the database
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/exampledatabase", "root", "password");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/week8", "root", "password");
 
         try {
 
-            // Insert a new record into the "users" table
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO users (username, password) VALUES (?, ?)");
+            // Insert a new record into the "makeup" table
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO makeup (brand, product,item_no,year_to_expire) VALUES (?, ?,?,?)");
             stmt.setString(1, "Des");
             stmt.setString(2, "software");
+           stmt.setInt(3,2);
+           stmt.setInt(4,2023);
             stmt.executeUpdate();
 
-            // Insert a new record into the "emails" table, referencing the new user
-            stmt = conn.prepareStatement("INSERT INTO emails (user_id, email) VALUES (?, ?)");
+            // Insert a new record into the "manufacturing" table, referencing the new user
+            stmt = conn.prepareStatement("INSERT INTO manufacturing (makeup_id, ingredients,productcost,manufacturingcost) VALUES (?, ?,?,?)");
             stmt.setInt(1, getLastInsertId(conn));
-            stmt.setString(2, "des@atu.ie");
+            stmt.setString(2, "glycerine");
+            stmt.setInt(3,25);
+            stmt.setInt(4,15);
             stmt.executeUpdate();
 
             System.out.println("Insert completed successfully.");
